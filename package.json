@@ -4,15 +4,24 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "dev": "node --watch app.js",
-    "start": "node app.js"
+    "dev": "node --env-file=.env --watch app.js",
+    "start": "node --env-file=.env app.js",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio"
   },
   "keywords": [],
   "author": "deepak sinha",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "drizzle-orm": "^0.39.3",
     "ejs": "^3.1.10",
-    "express": "^5.0.0"
+    "express": "^5.0.0",
+    "mysql2": "^3.12.0",
+    "url_shortner": "file:"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.30.4"
   }
 }

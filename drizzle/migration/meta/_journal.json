@@ -1,0 +1,13 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1740461755360,
+      "tag": "0000_fat_red_wolf",
+      "breakpoints": true
+    }
+  ]
+}
