@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us - MyApp</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/contact.css" />
+  </head>
+  <body>
+    <%- include("../partials/header.ejs") %>
+
+    <main class="contact-container">
+      <section class="contact-hero">
+        <h1>Contact Us</h1>
+        <p>We'd love to hear from you!</p>
+      </section>
+      <section class="contact-form">
+        <form action="/contact" method="POST">
+          <div class="form-group">
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Your Name"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Your Email"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Your Message"
+              rows="5"
+              required
+            ></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+      </section>
+    </main>
+
+    <%- include("../partials/footer.ejs") %>
+  </body>
+</html>

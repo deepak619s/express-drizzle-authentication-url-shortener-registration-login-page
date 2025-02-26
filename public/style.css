@@ -1,110 +1,540 @@
 /* General reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
 body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
-    line-height: 1.6;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+  margin: 0;
+  font-family: "Arial", sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+  line-height: 1.6;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 .container {
-    max-width: 600px;
-    background: #fff;
-    padding: 5rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    text-align: center;
+  max-width: 600px;
+  background: #fff;
+  padding: 7rem;
+  padding-bottom: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  text-align: center;
+  margin: 0 auto;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
 }
 
 h1 {
-    color: #3b82f6;
-    margin-bottom: 1rem;
-    font-size: 2rem;
+  color: #3b82f6;
+  margin-bottom: 1rem;
+  font-size: 2rem;
 }
 
 h2 {
-    margin-top: 2rem;
-    font-size: 1.5rem;
-    color: #444;
+  margin-top: 2rem;
+  font-size: 1.5rem;
+  color: #444;
 }
 
 form {
-    margin-top: 1rem;
-    text-align: left;
+  margin-top: 1rem;
+  text-align: left;
 }
 
 form div {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
 }
 
 input[type="url"],
 input[type="text"] {
-    width: 100%;
-    padding: 0.75rem;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    transition: border-color 0.3s ease;
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
 }
 
 input[type="url"]:focus,
 input[type="text"]:focus {
-    border-color: #3b82f6;
-    outline: none;
-    box-shadow: 0 0 5px rgba(59, 130, 246, 0.3);
+  border-color: #3b82f6;
+  outline: none;
+  box-shadow: 0 0 5px rgba(59, 130, 246, 0.3);
 }
 
-button {
-    background-color: #3b82f6;
-    color: #fff;
-    font-size: 1rem;
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    margin-left: 10rem;
+.shorten-btn {
+  background-color: #3b82f6;
+  color: #fff;
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-left: 10rem;
 }
 
 button:hover {
-    background-color: #2563eb;
-    transform: scale(1.05);
+  background-color: #2563eb;
+  transform: scale(1.05);
 }
 
 button:active {
-    transform: scale(1);
+  transform: scale(1);
 }
 
 ul {
-    list-style: none;
-    padding: 0;
-    margin: 1rem 0;
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
 }
 
 ul li {
-    background: #e5e7eb;
-    padding: 0.75rem;
-    margin: 0.5rem 0;
-    border-radius: 5px;
-    word-break: break-all;
+  background: #e5e7eb;
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+  border-radius: 5px;
+  word-break: break-all;
 }
 
 ul li a {
-    color: #3b82f6;
-    text-decoration: none;
-    font-weight: bold;
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 ul li a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
+
+/***** Register Section *****/
+
+/* Header Styles */
+.header {
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  /* padding: 1rem; */
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo h1 {
+  color: #1877f2;
+  font-size: 1.5rem;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #1877f2;
+}
+
+/* Register Form Styles */
+.register-container {
+  /* min-height: 100vh; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 110px 20px 0px;
+}
+
+.register-form {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.register-form h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #1c2526;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+input:focus {
+  outline: none;
+  border-color: #1877f2;
+  box-shadow: 0 0 5px rgba(24, 119, 242, 0.3);
+}
+
+.register-btn {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #1877f2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.register-btn:hover {
+  background-color: #166fe5;
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.login-link a {
+  color: #1877f2;
+  text-decoration: none;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+/* Footer Styles */
+.footer {
+  background-color: #1c2526;
+  color: white;
+  padding: 2rem;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.social-links {
+  margin-top: 1rem;
+}
+
+.social-links a {
+  color: white;
+  text-decoration: none;
+  margin: 0 1rem;
+}
+
+.social-links a:hover {
+  color: #1877f2;
+}
+
+/***** End Register Section *****/
+
+/***** Login Page Section *****/
+
+/* Login Form Styles */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 20px 80px;
+}
+
+.login-form {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-form h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #1c2526;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #1877f2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+  background-color: #166fe5;
+}
+
+.register-link {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.register-link a {
+  color: #1877f2;
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+/* Update header nav-links to highlight login when active */
+.nav-links a.active-login {
+  color: #1877f2;
+}
+
+/***** End Login Page Section *****/
+
+/***** Home Page Section *****/
+
+/* Home Page Styles */
+.home-container {
+  padding: 80px 20px 20px;
+}
+
+.hero {
+  text-align: center;
+  padding: 4rem 1rem;
+  background: linear-gradient(135deg, #1877f2, #1c2526);
+  color: white;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.cta-btn {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background-color: #ffffff;
+  color: #1877f2;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.cta-btn:hover {
+  background-color: #166fe5;
+  color: white;
+}
+
+.features {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.feature-card {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.feature-card h3 {
+  color: #1c2526;
+  margin-bottom: 1rem;
+}
+
+/***** End Home Page Section *****/
+
+/***** About Page Section *****/
+
+/* About Page Styles */
+.about-container {
+  padding: 80px 20px 20px;
+}
+
+.about-hero {
+  text-align: center;
+  padding: 3rem 1rem;
+  background-color: #f0f2f5;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+}
+
+.about-hero h1 {
+  font-size: 2.2rem;
+  color: #1c2526;
+  margin-bottom: 1rem;
+}
+
+.about-hero p {
+  font-size: 1.1rem;
+  color: #666;
+}
+
+.about-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.mission,
+.team {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.mission h2,
+.team h2 {
+  color: #1877f2;
+  margin-bottom: 1rem;
+}
+
+.mission p,
+.team p {
+  color: #333;
+}
+
+/***** End About Page Section *****/
+
+/***** Contact Page Section *****/
+
+/* Contact Page Styles */
+.contact-container {
+  padding: 80px 20px 20px;
+}
+
+.contact-hero {
+  text-align: center;
+  padding: 3rem 1rem;
+  background-color: #f0f2f5;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+}
+
+.contact-hero h1 {
+  font-size: 2.2rem;
+  color: #1c2526;
+  margin-bottom: 1rem;
+}
+
+.contact-hero p {
+  font-size: 1.1rem;
+  color: #666;
+}
+
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+textarea {
+  resize: vertical;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: #1877f2;
+  box-shadow: 0 0 5px rgba(24, 119, 242, 0.3);
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #1877f2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: #166fe5;
+}
+
+/***** End Contact Page Section *****/

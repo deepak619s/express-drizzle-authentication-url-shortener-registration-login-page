@@ -15,7 +15,18 @@ export const getShortnerPage = async (req, res) => {
 
     const links = await getAllShortLinks();
 
-    return res.render("index.ejs", { links, host: req.host });
+    // let isLoggedIn = req.headers.cookie;
+    // isLoggedIn = Boolean(
+    //   isLoggedIn
+    //     ?.split(";")
+    //     ?.find((cookie) => cookie.trim().startsWith("isLoggedIn"))
+    //     ?.split("=")[1]
+    // );
+    // console.log("🚀 ~ getShortenerPage ~ isLoggedIn:", isLoggedIn);
+
+    let isLoggedIn = req.cookies.isLoggedIn;
+
+    return res.render("index.ejs", { links, host: req.host, isLoggedIn });
   } catch (error) {
     console.log(error);
     return res.status(500).send("Internal server error");
@@ -53,7 +64,7 @@ export const redirectToShort = async (req, res) => {
     const { shortCode } = req.params;
     // const links = await loadLinks();
     const link = await getShortLinkByShortCode(shortCode);
-    console.log("🚀 ~ redirectToShortLink ~ link:", link);
+    // console.log("🚀 ~ redirectToShortLink ~ link:", link);
 
     if (!link) {
       return res.status(400).send("404 error occured");

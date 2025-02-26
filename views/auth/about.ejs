@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - MyApp</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/about.css" />
+  </head>
+  <body>
+    <%- include("../partials/header.ejs") %>
+
+    <main class="about-container">
+      <section class="about-hero">
+        <h1>About MyApp</h1>
+        <p>Learn more about our mission and team.</p>
+      </section>
+      <section class="about-content">
+        <div class="mission">
+          <h2>Our Mission</h2>
+          <p>
+            We aim to provide the best user experience with innovative solutions
+            and exceptional support.
+          </p>
+        </div>
+        <div class="team">
+          <h2>Our Team</h2>
+          <p>
+            A dedicated group of professionals working to make your experience
+            amazing.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <%- include("../partials/footer.ejs") %>
+  </body>
+</html>
