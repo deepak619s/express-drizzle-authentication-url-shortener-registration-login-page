@@ -1,4 +1,9 @@
-import { createUser, getUserByEmail } from "../services/auth.services.js";
+import {
+  comparePassword,
+  createUser,
+  getUserByEmail,
+  hashPassword,
+} from "../services/auth.services.js";
 
 export const getRegisterPage = (req, res) => {
   return res.render("../views/auth/register.ejs");
@@ -13,7 +18,9 @@ export const postRegister = async (req, res) => {
 
   if (userExists) return res.redirect("/register");
 
-  const [user] = await createUser({ name, email, password });
+  const hashedPassword = await hashPassword(password);
+
+  const [user] = await createUser({ name, email, password: hashedPassword });
   console.log(user);
 
   res.redirect("/login");
@@ -31,7 +38,11 @@ export const postLogin = async (req, res) => {
 
   if (!user) return res.redirect("/login");
 
-  if (user.password !== password) return res.redirect("/login");
+  //todo bscrypt.compare(plainTextPassword, hashedPassword);
+  const isPasswordValid = await comparePassword(password, user.password);
+
+  // if (user.password !== password) return res.redirect("/login");
+  if (!isPasswordValid) return res.redirect("/login");
 
   // res.setHeader("Set-Cookie", "isLoggedIn=true; path=/;");
   res.cookie("isLoggedIn", true);
