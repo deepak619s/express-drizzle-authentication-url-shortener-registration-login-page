@@ -20,6 +20,17 @@ app.use(cookieParser());
 
 app.use(verifyAuthentication);
 
+app.use((req, res, next) => {
+  res.locals.user = req.user;
+  return next();
+});
+
+// How It Works:
+// This middleware runs on every request before reaching the route handlers.
+//? res.locals is an object that persists throughout the request-response cycle.
+//? If req.user exists (typically from authentication, like Passport.js), it's stored in res.locals.user.
+//? Views (like EJS, Pug, or Handlebars) can directly access user without manually passing it in every route.
+
 //? Express Router :-
 // app.use(router);              // ? Default Router
 app.use(authRoutes); //? Named Exports

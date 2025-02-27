@@ -31,6 +31,14 @@ export const getLoginPage = (req, res) => {
   return res.render("auth/login.ejs");
 };
 
+export const getAboutPage = (req, res) => {
+  return res.render("auth/about.ejs");
+};
+
+export const getContactPage = (req, res) => {
+  return res.render("auth/contact.ejs");
+};
+
 export const postLogin = async (req, res) => {
   const { email, password } = req.body;
 
@@ -57,4 +65,9 @@ export const postLogin = async (req, res) => {
   res.cookie("access_token", token);
 
   res.redirect("/");
+};
+
+export const getMe = (req, res) => {
+  if (!req.user) return res.send("Not logged in");
+  return res.send(`<h1>Hey ${req.user.name} - ${req.user.email}</h1>`);
 };

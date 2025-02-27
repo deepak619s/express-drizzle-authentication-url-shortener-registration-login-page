@@ -17,4 +17,10 @@ router
   .get(authControllers.getLoginPage)
   .post(authControllers.postLogin);
 
+router.route("/me").get(authControllers.getMe);
+
+router.route("/about").get(authControllers.getAboutPage);
+
+router.route("/contact").get(authControllers.getContactPage);
+
 export const authRoutes = router;
