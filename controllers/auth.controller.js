@@ -1,6 +1,7 @@
 import {
   comparePassword,
   createUser,
+  generateToken,
   getUserByEmail,
   hashPassword,
 } from "../services/auth.services.js";
@@ -45,6 +46,15 @@ export const postLogin = async (req, res) => {
   if (!isPasswordValid) return res.redirect("/login");
 
   // res.setHeader("Set-Cookie", "isLoggedIn=true; path=/;");
-  res.cookie("isLoggedIn", true);
+  // res.cookie("isLoggedIn", true);
+
+  const token = generateToken({
+    id: user.id,
+    name: user.name,
+    email: user.email,
+  });
+
+  res.cookie("access_token", token);
+
   res.redirect("/");
 };
