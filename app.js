@@ -4,6 +4,7 @@ import express from "express";
 import { shortnerRoutes } from "./routes/shortener.routes.js"; //? Named Exports
 import { authRoutes } from "./routes/auth.routes.js";
 import cookieParser from "cookie-parser";
+import { verifyAuthentication } from "./middlewares/verify-auth-middleware.js";
 
 const app = express();
 
@@ -16,6 +17,8 @@ app.set("view engine", "ejs"); //? Template Engine
 // app.set("views", "./views");         //? No need to write like this
 
 app.use(cookieParser());
+
+app.use(verifyAuthentication);
 
 //? Express Router :-
 // app.use(router);              // ? Default Router
