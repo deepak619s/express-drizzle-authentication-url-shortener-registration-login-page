@@ -23,4 +23,6 @@ router.route("/about").get(authControllers.getAboutPage);
 
 router.route("/contact").get(authControllers.getContactPage);
 
+router.route("/logout").get(authControllers.logoutUser);
+
 export const authRoutes = router;

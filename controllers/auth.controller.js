@@ -7,10 +7,14 @@ import {
 } from "../services/auth.services.js";
 
 export const getRegisterPage = (req, res) => {
+  if (req.user) return res.redirect("/");
+
   return res.render("../views/auth/register.ejs");
 };
 
 export const postRegister = async (req, res) => {
+  if (req.user) return res.redirect("/");
+
   // console.log(req.body);
   const { name, email, password } = req.body;
 
@@ -28,6 +32,8 @@ export const postRegister = async (req, res) => {
 };
 
 export const getLoginPage = (req, res) => {
+  if (req.user) return res.redirect("/");
+
   return res.render("auth/login.ejs");
 };
 
@@ -40,6 +46,8 @@ export const getContactPage = (req, res) => {
 };
 
 export const postLogin = async (req, res) => {
+  if (req.user) return res.redirect("/");
+
   const { email, password } = req.body;
 
   const user = await getUserByEmail(email);
@@ -70,4 +78,9 @@ export const postLogin = async (req, res) => {
 export const getMe = (req, res) => {
   if (!req.user) return res.send("Not logged in");
   return res.send(`<h1>Hey ${req.user.name} - ${req.user.email}</h1>`);
+};
+
+export const logoutUser = (req, res) => {
+  res.clearCookie("access_token");
+  res.redirect("/login");
 };
