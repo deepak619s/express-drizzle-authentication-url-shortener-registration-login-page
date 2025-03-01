@@ -6,6 +6,9 @@ import { authRoutes } from "./routes/auth.routes.js";
 import cookieParser from "cookie-parser";
 import { verifyAuthentication } from "./middlewares/verify-auth-middleware.js";
 
+import session from "express-session";
+import flash from "connect-flash";
+
 const app = express();
 
 const PORT = 3000;
@@ -17,6 +20,12 @@ app.set("view engine", "ejs"); //? Template Engine
 // app.set("views", "./views");         //? No need to write like this
 
 app.use(cookieParser());
+
+app.use(
+  session({ secret: "my-secret", resave: true, saveUninitialized: false })
+);
+
+app.use(flash());
 
 app.use(verifyAuthentication);
 

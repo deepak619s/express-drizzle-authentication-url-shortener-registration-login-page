@@ -49,6 +49,12 @@
               required
             />
           </div>
+
+          <% if (errors && errors.length > 0) { %> <% errors.forEach((error) =>
+          { %>
+          <p class="flash-error"><%= error %></p>
+          <%}); %> <% } %>
+
           <button type="submit" class="register-btn">Register</button>
         </form>
         <div class="login-link">

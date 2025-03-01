@@ -24,6 +24,12 @@
               placeholder="Password"
             />
           </div>
+
+          <% if (errors && errors.length > 0) { %> <% errors.forEach((error) =>
+          { %>
+          <p class="flash-error"><%= error %></p>
+          <%}); %> <% } %>
+
           <a href="/"><button type="submit" class="login-btn">Login</button></a>
         </form>
         <div class="register-link">

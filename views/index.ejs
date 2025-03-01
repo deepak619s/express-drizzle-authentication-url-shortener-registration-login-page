@@ -8,7 +8,9 @@
   </head>
   <body>
     <%- include("./partials/header.ejs") %> <% if(user) { %>
-    <h2 style="position: absolute; top: 10%">You are logged In</h2>
+    <h2 style="position: absolute; top: 10%; color: green">
+      You are logged In
+    </h2>
     <% } else { %>
     <h2>You are not logged In</h2>
     <% } %>

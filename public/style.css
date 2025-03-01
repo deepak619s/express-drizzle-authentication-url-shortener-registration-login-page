@@ -538,3 +538,8 @@ textarea:focus {
 }
 
 /***** End Contact Page Section *****/
+
+.flash-error {
+  background-color: rgb(187, 104, 104);
+  margin-bottom: 10px;
+}
