@@ -15,6 +15,13 @@
       "when": 1740552061569,
       "tag": "0001_chilly_firestar",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1741103694342,
+      "tag": "0002_material_lockheed",
+      "breakpoints": true
     }
   ]
 }
