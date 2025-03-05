@@ -5,6 +5,10 @@ import {
   getUserByEmail,
   hashPassword,
 } from "../services/auth.services.js";
+import {
+  loginUserSchema,
+  registerUserSchema,
+} from "../validators/auth-validator.js";
 
 export const getRegisterPage = (req, res) => {
   if (req.user) return res.redirect("/");
@@ -18,7 +22,18 @@ export const postRegister = async (req, res) => {
   if (req.user) return res.redirect("/");
 
   // console.log(req.body);
-  const { name, email, password } = req.body;
+  // const { name, email, password } = req.body;
+
+  const { data, error } = registerUserSchema.safeParse(req.body);
+  console.log(data);
+
+  if (error) {
+    const errors = error.errors[0].message;
+    req.flash("errors", errors);
+    return res.redirect("/register");
+  }
+
+  const { name, email, password } = data;
 
   const userExists = await getUserByEmail(email);
   console.log("userExists", userExists);
@@ -54,7 +69,18 @@ export const getContactPage = (req, res) => {
 export const postLogin = async (req, res) => {
   if (req.user) return res.redirect("/");
 
-  const { email, password } = req.body;
+  // const { email, password } = req.body;
+
+  const { data, error } = loginUserSchema.safeParse(req.body);
+  console.log(data);
+
+  if (error) {
+    const errors = error.errors[0].message;
+    req.flash("errors", errors);
+    return res.redirect("/login");
+  }
+
+  const { email, password } = data;
 
   const user = await getUserByEmail(email);
   console.log("user", user);
