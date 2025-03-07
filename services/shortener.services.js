@@ -18,3 +18,13 @@ export const getShortLinkByShortCode = async (shortCode) => {
 export const insertShortLink = async ({ url, finalShortCode, userId }) => {
   await db.insert(shortLink).values({ url, shortCode: finalShortCode, userId });
 };
+
+// findShortLinkById :-
+export const findShortLinkById = async (id) => {
+  const [result] = await db
+    .select()
+    .from(shortLink)
+    .where(eq(shortLink.id, id));
+
+  return result;
+};

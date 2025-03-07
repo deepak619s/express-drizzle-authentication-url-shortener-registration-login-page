@@ -1,13 +1,15 @@
-import { postURLShortner, getShortnerPage, redirectToShort } from "../controllers/postShortner.controller.js";
+import {
+  postURLShortner,
+  getShortnerPage,
+  redirectToShort,
+  getShortenerEditPage,
+} from "../controllers/postShortner.controller.js";
 
 // import express from "express";
 // const router = express.Router();
 
 import { Router } from "express";
 const router = Router();
-
-
-
 
 // router.get("/report", (req, res) => {
 //     const student = {
@@ -18,17 +20,16 @@ const router = Router();
 //     return res.render("report.ejs", {student});
 // });
 
-
 router.get("/", getShortnerPage);
 
 router.post("/", postURLShortner);
 
 router.get("/:shortCode", redirectToShort);
 
+router.route("/edit/:id").get(getShortenerEditPage);
 
 // ? Default Router :-
 // export default router;
-
 
 //? Named Exports :-
 export const shortnerRoutes = router;

@@ -3,14 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+    <link rel="stylesheet" href="/style.css" />
     <title>Url Shortner</title>
   </head>
   <body>
@@ -36,12 +29,18 @@
       <form action="/" method="post">
         <div>
           <label for="Url">Enter Url:</label>
-          <input type="url" name="url" id="url" required />
+          <input type="url" name="url" id="url" value="<%= url %>" required />
         </div>
 
         <div>
           <label for="shortcode">Enter shortcode:</label>
-          <input type="text" name="shortcode" id="shortcode" required />
+          <input
+            type="text"
+            name="shortcode"
+            id="shortcode"
+            value="<%= shortCode %>"
+            required
+          />
         </div>
 
         <% if (errors && errors.length > 0) { %> <% errors.forEach((error) => {
@@ -49,7 +48,7 @@
         <p class="flash-error"><%= error %></p>
         <%}); %> <% } %>
 
-        <button class="shorten-btn" type="submit">Shorten</button>
+        <button class="shorten-btn" type="submit">Update</button>
       </form>
 
       <h2>Shortened Urls</h2>
@@ -58,24 +57,12 @@
 
         <!-- links.map(({shortCode, url}) => `<li><a href="/${shortCode}" target="_blank">${host}/${shortCode}</a> - ${url}</li>`).join(""); -->
 
-        <% links.map(({shortCode, url, id}) => { %>
+        <% links.map(({shortCode, url}) => { %>
         <li>
           <a href="/<%= shortCode %>" target="_blank"
             ><%= host %>/<%= shortCode%></a
           >
           - <%= url%>
-
-          <div class="url-actions">
-            <button class="copy-btn">
-              <a href="/edit/<%= id %>"
-                ><i class="fa-solid fa-pen-to-square"></i
-              ></a>
-            </button>
-
-            <button class="copy-btn">
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </div>
         </li>
         <% }) %>
       </ul>

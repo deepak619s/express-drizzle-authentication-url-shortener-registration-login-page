@@ -3,10 +3,13 @@
 import crypto from "crypto";
 // import { loadLinks, saveLinks } from "../models/shortener.model.js";
 import {
+  findShortLinkById,
   getAllShortLinks,
   getShortLinkByShortCode,
   insertShortLink,
 } from "../services/shortener.services.js";
+
+import z from "zod";
 
 export const getShortnerPage = async (req, res) => {
   try {
@@ -28,7 +31,11 @@ export const getShortnerPage = async (req, res) => {
 
     // let isLoggedIn = req.cookies.isLoggedIn;
 
-    return res.render("index.ejs", { links, host: req.host });
+    return res.render("index.ejs", {
+      links,
+      host: req.host,
+      errors: req.flash("errors"),
+    });
   } catch (error) {
     console.log(error);
     return res.status(500).send("Internal server error");
@@ -47,7 +54,12 @@ export const postURLShortner = async (req, res) => {
     const link = await getShortLinkByShortCode(finalShortCode);
 
     if (link) {
-      res.status(400).send("Short code already exists. Please choose another.");
+      // res.status(400).send("Short code already exists. Please choose another.");
+
+      req.flash(
+        "errors",
+        "Uel with that shortcode already exists, please choose another."
+      );
     }
 
     // link[finalShortCode] = url;
@@ -77,5 +89,30 @@ export const redirectToShort = async (req, res) => {
     return res.redirect(link.url);
   } catch (error) {
     return res.status(500).send("Internal server error");
+  }
+};
+
+// getShortenerEditPage :-
+export const getShortenerEditPage = async (req, res) => {
+  if (!req.user) return res.redirect("/login");
+  // const id = req.params;
+  const { data: id, error } = z.coerce.number().int().safeParse(req.params.id);
+  if (error) return res.redirect("/404");
+
+  try {
+    const shortLink = await findShortLinkById(id);
+    if (!shortLink) return res.redirect("/404");
+
+    res.render("edit-shortLink", {
+      id: shortLink.id,
+      url: shortLink.url,
+      shortCode: shortLink.shortCode,
+      errors: req.flash("errors") || [],
+      links: [],
+      host: req.get("host"),
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send("Internal Server Error");
   }
 };
