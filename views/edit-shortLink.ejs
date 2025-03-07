@@ -20,13 +20,23 @@
       You are logged In
     </h2>
     <% } else { %>
-    <h2>You are not logged In</h2>
+    <h2
+      style="
+        position: absolute;
+        top: 13.5%;
+        color: red;
+        left: 30rem;
+        font-size: 14px;
+      "
+    >
+      You are not logged In
+    </h2>
     <% } %>
 
     <div class="container">
       <h1>Url Shortner</h1>
 
-      <form action="/" method="post">
+      <form action="/edit/<%= id %>" method="post">
         <div>
           <label for="Url">Enter Url:</label>
           <input type="url" name="url" id="url" value="<%= url %>" required />

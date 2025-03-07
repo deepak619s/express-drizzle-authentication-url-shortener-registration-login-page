@@ -7,6 +7,7 @@ import {
   getAllShortLinks,
   getShortLinkByShortCode,
   insertShortLink,
+  updateShortCode,
 } from "../services/shortener.services.js";
 
 import z from "zod";
@@ -112,6 +113,29 @@ export const getShortenerEditPage = async (req, res) => {
       host: req.get("host"),
     });
   } catch (error) {
+    console.error(error);
+    return res.status(500).send("Internal Server Error");
+  }
+};
+
+// postShortenerEditPage :-
+export const postShortenerEditPage = async (req, res) => {
+  if (!req.user) return res.redirect("/login");
+  // const id = req.params;
+  const { data: id, error } = z.coerce.number().int().safeParse(req.params.id);
+  if (error) return res.redirect("/404");
+
+  try {
+    const { url, shortCode } = req.body;
+    const newUpdateShortCode = await updateShortCode({ id, url, shortCode });
+    if (!newUpdateShortCode) return res.redirect("/404");
+    res.redirect("/");
+  } catch (error) {
+    if (err.code === "ER_DUP_ENTRY") {
+      req.flash("errors", "Shortcode already exists, please choose another");
+      return res.redirect(`/edit/${id}`);
+    }
+
     console.error(error);
     return res.status(500).send("Internal Server Error");
   }
