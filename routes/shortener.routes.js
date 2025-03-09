@@ -4,6 +4,7 @@ import {
   redirectToShort,
   getShortenerEditPage,
   postShortenerEditPage,
+  deleteShortCode,
 } from "../controllers/postShortner.controller.js";
 
 // import express from "express";
@@ -28,6 +29,8 @@ router.post("/", postURLShortner);
 router.get("/:shortCode", redirectToShort);
 
 router.route("/edit/:id").get(getShortenerEditPage).post(postShortenerEditPage);
+
+router.route("/delete/:id").post(deleteShortCode);
 
 // ? Default Router :-
 // export default router;

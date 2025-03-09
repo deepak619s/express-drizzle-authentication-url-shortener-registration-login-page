@@ -75,16 +75,24 @@
           >
           - <%= url%>
 
-          <div class="url-actions">
-            <button class="copy-btn">
-              <a href="/edit/<%= id %>"
-                ><i class="fa-solid fa-pen-to-square"></i
-              ></a>
-            </button>
+          <div>
+            <div class="url-actions">
+              <button class="copy-btn">
+                <a href="/edit/<%= id %>"
+                  ><i class="fa-solid fa-pen-to-square"></i
+                ></a>
+              </button>
 
-            <button class="copy-btn">
-              <i class="fa-solid fa-trash"></i>
-            </button>
+              <form
+                action="/delete/<%= id %>"
+                method="POST"
+                style="display: contents"
+              >
+                <button class="copy-btn">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </form>
+            </div>
           </div>
         </li>
         <% }) %>

@@ -3,6 +3,7 @@
 import crypto from "crypto";
 // import { loadLinks, saveLinks } from "../models/shortener.model.js";
 import {
+  deleteShortCodeById,
   findShortLinkById,
   getAllShortLinks,
   getShortLinkByShortCode,
@@ -136,6 +137,23 @@ export const postShortenerEditPage = async (req, res) => {
       return res.redirect(`/edit/${id}`);
     }
 
+    console.error(error);
+    return res.status(500).send("Internal Server Error");
+  }
+};
+
+// deleteShortCode :-
+export const deleteShortCode = async (req, res) => {
+  try {
+    const { data: id, error } = z.coerce
+      .number()
+      .int()
+      .safeParse(req.params.id);
+    if (error) return res.redirect("/404");
+
+    await deleteShortCodeById(id);
+    return res.redirect("/");
+  } catch (error) {
     console.error(error);
     return res.status(500).send("Internal Server Error");
   }
