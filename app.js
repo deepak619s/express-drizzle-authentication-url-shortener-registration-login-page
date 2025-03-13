@@ -1,13 +1,13 @@
+import cookieParser from "cookie-parser";
 import express from "express";
+import flash from "connect-flash";
+import requesIp from "request-ip";
+import session from "express-session";
 
 // import router from "./routes/shortener.routes.js";                 // ? Default Router
 import { shortnerRoutes } from "./routes/shortener.routes.js"; //? Named Exports
 import { authRoutes } from "./routes/auth.routes.js";
-import cookieParser from "cookie-parser";
 import { verifyAuthentication } from "./middlewares/verify-auth-middleware.js";
-
-import session from "express-session";
-import flash from "connect-flash";
 
 const app = express();
 
@@ -26,6 +26,8 @@ app.use(
 );
 
 app.use(flash());
+
+app.use(requesIp.mw());
 
 app.use(verifyAuthentication);
 
