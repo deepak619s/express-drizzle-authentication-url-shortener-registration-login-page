@@ -5,22 +5,8 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1740461755360,
-      "tag": "0000_fat_red_wolf",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1740552061569,
-      "tag": "0001_chilly_firestar",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1741103694342,
-      "tag": "0002_material_lockheed",
+      "when": 1741879021805,
+      "tag": "0000_remarkable_ender_wiggin",
       "breakpoints": true
     }
   ]
