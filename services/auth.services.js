@@ -6,7 +6,7 @@ import {
 
 import { eq } from "drizzle-orm";
 import { db } from "../config/db.js";
-import { sessionsTable, usersTable } from "../drizzle/schema.js";
+import { sessionsTable, shortLink, usersTable } from "../drizzle/schema.js";
 // import bcrypt from "bcrypt";
 import argon2 from "argon2";
 import jwt from "jsonwebtoken";
@@ -80,8 +80,8 @@ export const findSessionById = async (sessionId) => {
   return session;
 };
 
-// finsUserById :-
-export const finsUserById = async (userId) => {
+// findUserById :-
+export const findUserById = async (userId) => {
   const [user] = await db
     .select()
     .from(usersTable)
@@ -100,7 +100,7 @@ export const refreshTokens = async (refreshToken) => {
       throw new Error("Invalid Session");
     }
 
-    const user = await finsUserById(currentSession.userId);
+    const user = await findUserById(currentSession.userId);
 
     if (!user) throw new Error("Invalid User");
 
@@ -157,4 +157,9 @@ export const authenticateUser = async ({ req, res, user, name, email }) => {
     ...baseConfig,
     maxAge: REFRESH_TOKEN_EXPIRY,
   });
+};
+
+// getAllShortLinks :-
+export const getAllShortLinks = async (userId) => {
+  return await db.select().from(shortLink).where(eq(shortLink.userId, userId));
 };

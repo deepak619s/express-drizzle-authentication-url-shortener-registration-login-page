@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile | My App</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <%- include('../partials/header') %>
+
+    <main class="profile-container">
+      <section class="profile-header">
+        <div class="avatar-container">
+          <div class="avatar">
+            <span><%= user.name.charAt(0).toUpperCase() %></span>
+          </div>
+          <div
+            class="status-indicator <%= user ? 'online' : 'offline' %>"
+          ></div>
+        </div>
+
+        <div class="user-info">
+          <h1 class="user-name"><%= user.name %></h1>
+          <div class="user-details">
+            <p><i class="fas fa-envelope"></i> <%= user.email %></p>
+            <p>
+              <i class="fas fa-calendar-alt"></i> Member since <%= new
+              Date(user.createdAt).toLocaleDateString() %>
+            </p>
+          </div>
+          <div class="status-message">
+            <span class="<%= user ? 'success' : 'warning' %>">
+              <%= user ? 'Active Account' : 'Please Log In' %>
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <section class="profile-content">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <i class="fas fa-link"></i>
+            <h3><%= user.links ? user.links.length : 0 %></h3>
+            <p>Links Created</p>
+          </div>
+          <div class="stat-card">
+            <i class="fas fa-mouse-pointer"></i>
+            <h3><%= user.totalClicks || 0 %></h3>
+            <p>Total Clicks</p>
+          </div>
+          <div class="stat-card">
+            <i class="fas fa-clock"></i>
+            <h3>
+              <%= user.lastActive ? new
+              Date(user.lastActive).toLocaleDateString() : 'Today' %>
+            </h3>
+            <p>Last Active</p>
+          </div>
+        </div>
+
+        <div class="actions-grid">
+          <a href="/edit-profile" class="action-btn primary">
+            <i class="fas fa-user-edit"></i> Edit Profile
+          </a>
+          <a href="/change-password" class="action-btn secondary">
+            <i class="fas fa-key"></i> Change Password
+          </a>
+          <a href="/logout" class="action-btn danger">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <%- include('../partials/footer') %>
+  </body>
+</html>
