@@ -15,6 +15,13 @@
       "when": 1742442263043,
       "tag": "0001_windy_silver_fox",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1742485618024,
+      "tag": "0002_petite_nomad",
+      "breakpoints": true
     }
   ]
 }
