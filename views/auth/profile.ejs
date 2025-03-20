@@ -39,6 +39,31 @@
             </span>
           </div>
         </div>
+        <div class="profile-verification">
+          <div class="verification-card">
+            <p class="verification-status">
+              <span class="verification-label">
+                <i class="fas fa-envelope"></i> Email Verification
+              </span>
+              <% if (user.isEmailValid) { %>
+                <span class="verification-badge verified">
+                  <i class="fas fa-check-circle"></i>
+                  <span class="badge-text">Verified</span>
+                </span>
+              <% } else { %>
+                <span class="verification-badge not-verified">
+                  <i class="fas fa-exclamation-circle"></i>
+                  <span class="badge-text">Not Verified</span>
+                </span>
+                <a href="/resend-verification" class="verify-link" title="Resend Verification Email">
+                  <i class="fas fa-paper-plane"></i>
+                  <span class="link-text">Verify Now</span>
+                </a>
+              <% } %>
+            </p>
+          </div>
+        </div>
+      </div>
       </section>
 
       <section class="profile-content">

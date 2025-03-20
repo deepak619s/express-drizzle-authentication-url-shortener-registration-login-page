@@ -108,6 +108,7 @@ export const refreshTokens = async (refreshToken) => {
       id: user.id,
       name: user.name,
       email: user.email,
+      isEmailValid: user.isEmailValid,
       sessionId: currentSession.id,
     };
 
@@ -141,6 +142,7 @@ export const authenticateUser = async ({ req, res, user, name, email }) => {
     id: user.id,
     name: user.name || name,
     email: user.email || email,
+    isEmailValid: false,
     sessionId: session.id,
   });
 
