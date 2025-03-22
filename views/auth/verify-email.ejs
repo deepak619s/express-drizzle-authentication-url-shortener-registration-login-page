@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Verify Email - URL Shortener</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css"
+    />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <%- include("../partials/header.ejs") %>
+
+    <main class="email-container">
+      <section class="verify-section">
+        <h1 class="verify-title">Verify Your Email</h1>
+
+        <div class="alert-box">
+          <% if(user) { %>
+          <div class="alert alert-success">
+            <i class="zmdi zmdi-check-circle"></i>
+            <span>Welcome back! Your session is active</span>
+          </div>
+          <% } else { %>
+          <div class="alert alert-info">
+            <i class="zmdi zmdi-info"></i>
+            <span>Please log in to access all features</span>
+          </div>
+          <% } %>
+        </div>
+
+        <div class="verify-card">
+          <div class="card-content">
+            <p class="email-info">
+              <span class="email-label">Email:</span>
+              <span class="email-value"><%= email %></span>
+            </p>
+            <p class="verify-message">
+              We've sent a verification code to your email. Please enter it
+              below or request a new one if needed.
+            </p>
+
+            <form
+              action="/resend-verification-link"
+              method="post"
+              class="resend-form"
+            >
+              <button type="submit" class="btn-verify btn-secondary">
+                <i class="zmdi zmdi-refresh"></i>
+                Resend Code
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div class="verify-card verify-input-card">
+          <div class="card-content">
+            <form action="/verify-email-token" method="get" class="verify-form">
+              <div class="form-group">
+                <label for="token" class="form-label">
+                  <i class="zmdi zmdi-key"></i>
+                  Verification Code
+                </label>
+                <input
+                  type="text"
+                  name="token"
+                  id="token"
+                  class="form-input"
+                  maxlength="8"
+                  required
+                  pattern="\d{8}"
+                  placeholder="Enter 8-digit code"
+                  title="Please enter an 8-digit verification code"
+                />
+              </div>
+              <input type="hidden" value="<%= email %>" name="email" />
+              <button type="submit" class="btn-verify btn-primary">
+                <i class="zmdi zmdi-check"></i>
+                Verify Now
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <%- include("../partials/footer.ejs") %>
+  </body>
+</html>

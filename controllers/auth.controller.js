@@ -166,3 +166,18 @@ export const getProfilePage = async (req, res) => {
     },
   });
 };
+
+// getVerifyEmailPage :-
+export const getVerifyEmailPage = async (req, res) => {
+  // if (!req.user || req.user.isEmailValid) return res.redirect("/");
+
+  if (!req.user) return res.redirect("/");
+
+  const user = await findUserById(req.user.id);
+
+  if (!user || user.isEmailValid) return res.redirect("/");
+
+  return res.render("auth/verify-email", {
+    email: req.user.email,
+  });
+};
