@@ -23,6 +23,10 @@ router.route("/profile").get(authControllers.getProfilePage);
 
 router.route("/verify-email").get(authControllers.getVerifyEmailPage);
 
+router
+  .route("/resend-verification-link")
+  .post(authControllers.resendVerificationLink);
+
 router.route("/about").get(authControllers.getAboutPage);
 
 router.route("/contact").get(authControllers.getContactPage);
