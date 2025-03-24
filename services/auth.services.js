@@ -6,7 +6,7 @@ import {
 
 import crypto from "crypto";
 
-import { eq } from "drizzle-orm";
+import { eq, lt, sql } from "drizzle-orm";
 import { db } from "../config/db.js";
 import {
   sessionsTable,
@@ -183,15 +183,21 @@ export const generateRandomToken = (digit = 8) => {
 
 // insertVerifyEmailToken :-
 export const insertVerifyEmailToken = async ({ userId, token }) => {
-  await db
-    .delete(verifyEmailTokensTable)
-    .where(lt(verifyEmailTokensTable.expiresAt, sql`CURRENT_TIMESTAMP`));
+  console.log("token: ", token);
 
-  await db.insert(verifyEmailTokensTable).values({ userId, token });
+  try {
+    await db
+      .delete(verifyEmailTokensTable)
+      .where(lt(verifyEmailTokensTable.expiresAt, sql`CURRENT_TIMESTAMP`));
+
+    await db.insert(verifyEmailTokensTable).values({ userId, token });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 // createVerifyEmailLink :-
 export const createVerifyEmailLink = async ({ email, token }) => {
-  const uriEncodedEmail = encodedURIComponent(email);
+  const uriEncodedEmail = encodeURIComponent(email);
   return `${process.env.FRONTEND_URL}/verify-email-token?token=${token}&email=${uriEncodedEmail}`;
 };

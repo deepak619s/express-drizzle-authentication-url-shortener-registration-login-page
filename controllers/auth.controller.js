@@ -2,6 +2,8 @@ import {
   ACCESS_TOKEN_EXPIRY,
   REFRESH_TOKEN_EXPIRY,
 } from "../config/constant.js";
+
+import { sendEmail } from "../lib/nodemailer.js";
 import {
   authenticateUser,
   clearUserSession,
@@ -10,6 +12,7 @@ import {
   createRefreshToken,
   createSession,
   createUser,
+  createVerifyEmailLink,
   findUserById,
   generateRandomToken,
   getAllShortLinks,
@@ -196,4 +199,16 @@ export const resendVerificationLink = async (req, res) => {
     email: req.user.email,
     token: randomToken,
   });
+
+  sendEmail({
+    to: req.user.email,
+    subject: "Verify your email",
+    html: `
+        <h1>Click the link below to verify your email</h1>
+        <p>You can use this token: <code>${randomToken}</code></p>
+        <a href="${verifyEmailLink}">Verify Email</a>
+      `,
+  }).catch(console.error);
+
+  res.redirect("/verify-email");
 };
