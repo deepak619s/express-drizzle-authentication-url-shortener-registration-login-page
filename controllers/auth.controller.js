@@ -7,6 +7,7 @@ import { sendEmail } from "../lib/nodemailer.js";
 import {
   authenticateUser,
   clearUserSession,
+  clearVerifyEmailTokens,
   comparePassword,
   createAccessToken,
   createRefreshToken,
@@ -14,16 +15,19 @@ import {
   createUser,
   createVerifyEmailLink,
   findUserById,
+  findVerificationEmailToken,
   generateRandomToken,
   getAllShortLinks,
   // generateToken,
   getUserByEmail,
   hashPassword,
   insertVerifyEmailToken,
+  verifyUserEmailAndUpdate,
 } from "../services/auth.services.js";
 import {
   loginUserSchema,
   registerUserSchema,
+  verifyEmailSchema,
 } from "../validators/auth-validator.js";
 
 export const getRegisterPage = (req, res) => {
@@ -211,4 +215,25 @@ export const resendVerificationLink = async (req, res) => {
   }).catch(console.error);
 
   res.redirect("/verify-email");
+};
+
+// verifyEmailToken :-
+export const verifyEmailToken = async (req, res) => {
+  const { data, error } = verifyEmailSchema.safeParse(req.query);
+
+  if (error) {
+    return res.send("Verification link invalid or expired!");
+  }
+
+  const token = await findVerificationEmailToken(data);
+  console.log("🚀 ~ verifyEmailToken ~ token:", token);
+
+  if (!token) res.send("Verification link invalid or expired");
+
+  await verifyUserEmailAndUpdate(token.email);
+
+  // clearVerifyEmailTokens(token.email).catch(console.error);
+  clearVerifyEmailTokens(token.userId).catch(console.error);
+
+  return res.redirect("/profile");
 };

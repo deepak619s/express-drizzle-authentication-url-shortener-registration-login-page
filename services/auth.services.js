@@ -6,7 +6,7 @@ import {
 
 import crypto from "crypto";
 
-import { eq, lt, sql } from "drizzle-orm";
+import { and, eq, gte, lt, sql } from "drizzle-orm";
 import { db } from "../config/db.js";
 import {
   sessionsTable,
@@ -215,4 +215,72 @@ export const createVerifyEmailLink = async ({ email, token }) => {
   url.searchParams.append("email", email);
 
   return url.toString();
+};
+
+// findVerificationEmailToken :-
+export const findVerificationEmailToken = async ({ token, email }) => {
+  const tokenData = await db
+    // .select({ key: table.column })
+    .select({
+      userId: verifyEmailTokensTable.userId,
+      token: verifyEmailTokensTable.token,
+      expiresAt: verifyEmailTokensTable.expiresAt,
+    })
+    .from(verifyEmailTokensTable)
+    .where(
+      and(
+        eq(verifyEmailTokensTable.token, token),
+        gte(verifyEmailTokensTable.expiresAt, sql`CURRENT_TIMESTAMP`)
+      )
+    );
+
+  // If no token found, return null
+  if (!tokenData.length) {
+    return null;
+  }
+
+  // const userId = tokenData[0].userId;
+  const { userId } = tokenData[0];
+
+  const userData = await db
+    .select({
+      userId: usersTable.id,
+      email: usersTable.email,
+    })
+    .from(usersTable)
+    .where(eq(usersTable.id, userId));
+
+  // If user not found, return null
+  if (!userData.length) {
+    return null;
+  }
+
+  return {
+    userId: userData[0].userId,
+    email: userData[0].email,
+    token: userData[0].token,
+    expiresAt: userData[0].expiresAt,
+  };
+};
+
+// verifyUserEmailAndUpdate :-
+export const verifyUserEmailAndUpdate = async (email) => {
+  return db
+    .update(usersTable)
+    .set({ isEmailValid: true })
+    .where(eq(usersTable.email, email));
+};
+
+// clearVerifyEmailTokens :-
+export const clearVerifyEmailTokens = async (userId) => {
+  // export const clearVerifyEmailTokens = async (email) => {
+  // const [user] = await db
+  //   .select()
+  //   .from(usersTable)
+  //   .where(eq(usersTable.email, email));
+
+  return await db
+    .delete(verifyEmailTokensTable)
+    // .where(eq(verifyEmailTokensTable.userId, user.id));
+    .where(eq(verifyEmailTokensTable.userId, userId));
 };

@@ -27,6 +27,8 @@ router
   .route("/resend-verification-link")
   .post(authControllers.resendVerificationLink);
 
+router.route("/verify-email-token").get(authControllers.verifyEmailToken);
+
 router.route("/about").get(authControllers.getAboutPage);
 
 router.route("/contact").get(authControllers.getContactPage);
