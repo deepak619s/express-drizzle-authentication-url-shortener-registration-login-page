@@ -17,11 +17,13 @@ import {
 // import bcrypt from "bcrypt";
 import argon2 from "argon2";
 import jwt from "jsonwebtoken";
-import { sendEmail } from "../lib/nodemailer.js";
 import path from "path";
 import fs from "fs/promises";
 import mjml2html from "mjml";
 import ejs from "ejs";
+
+// import { sendEmail } from "../lib/nodemailer.js";
+import { sendEmail } from "../lib/send-email.js";
 
 export const getUserByEmail = async (email) => {
   const [user] = await db
@@ -269,7 +271,7 @@ export const createVerifyEmailLink = async ({ email, token }) => {
 // };
 
 export const findVerificationEmailToken = async ({ token, email }) => {
-  return await db
+  return db
     .select({
       userId: usersTable.id,
       email: usersTable.email,
