@@ -1,0 +1,70 @@
+<!-- views/edit-profile.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/material-design-iconic-font@2.2.0/dist/css/material-design-iconic-font.min.css"
+    />
+    <title>Edit Profile</title>
+  </head>
+  <body>
+    <%- include("../partials/header.ejs") %>
+    
+    <main class="profile-container">
+      <section class="profile-editor">
+        <div class="status-wrapper">
+          <% if(user) { %>
+            <div class="status-badge status-success">
+              <i class="zmdi zmdi-check-circle"></i>
+              <span>Logged In Successfully</span>
+            </div>
+          <% } else { %>
+            <div class="status-badge status-warning">
+              <i class="zmdi zmdi-alert-circle"></i>
+              <span>Please Log In</span>
+            </div>
+          <% } %>
+        </div>
+
+        <div class="editor-form">
+          <h1 class="editor-title">Update Profile</h1>
+          <form action="/edit-profile" method="POST" class="profile-form">
+            <div class="input-group">
+              <label for="name" class="input-label">
+                <i class="zmdi zmdi-account"></i>
+                <span class="label-text">Full Name</span>
+              </label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                value="<%= name || '' %>"
+                required
+                placeholder="Enter your name"
+                class="input-field"
+              />
+            </div>
+
+            <% if (errors && errors.length > 0) { %>
+              <div class="error-messages">
+                <% errors.forEach(error => { %>
+                  <p class="error-text"><%= error %></p>
+                <% }) %>
+              </div>
+            <% } %>
+
+            <div class="form-actions">
+              <button type="submit" class="submit-btn">Save Changes</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <%- include("../partials/footer.ejs") %>
+  </body>
+</html>
