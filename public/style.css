@@ -1174,3 +1174,175 @@ body {
 }
 
 /***** End Edit Profile Section *****/
+
+/***** Start Change Password Section *****/
+
+:root {
+  --primary-color: #007bff;
+  --success-color: #28a745;
+  --error-color: #dc3545;
+  --text-color: #333;
+  --bg-color: #f8f9fa;
+}
+
+.main-content {
+  min-height: calc(100vh - 200px);
+  padding: 40px 20px;
+  background: var(--bg-color);
+}
+
+.password-change-container {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.wrapper {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+/* User Status Styles */
+.user-status-card {
+  margin-bottom: 25px;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.status-indicator.active {
+  background: rgba(40, 167, 69, 0.1);
+  color: var(--success-color);
+}
+
+.status-indicator.inactive {
+  background: rgba(220, 53, 69, 0.1);
+  color: var(--error-color);
+}
+
+.status-indicator i {
+  margin-right: 8px;
+  font-size: 18px;
+}
+
+/* Form Styles */
+.password-form-container {
+  text-align: center;
+}
+
+.form-heading {
+  color: var(--text-color);
+  font-size: 24px;
+  margin-bottom: 25px;
+}
+
+.password-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-group {
+  position: relative;
+  text-align: left;
+}
+
+.input-label {
+  display: block;
+  font-size: 14px;
+  color: var(--text-color);
+  margin-bottom: 5px;
+}
+
+.input-container {
+  position: relative;
+}
+
+.input-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+}
+
+input[type="password"],
+input[type="text"] {
+  width: 100%;
+  padding: 12px 40px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.toggle-visibility {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+}
+
+.password-hints {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #666;
+}
+
+.password-hints ul {
+  margin: 5px 0 0 20px;
+  padding: 0;
+}
+
+/* Error Messages */
+.error-messages {
+  background: rgba(220, 53, 69, 0.1);
+  padding: 10px;
+  border-radius: 6px;
+  margin: 10px 0;
+}
+
+.error-text {
+  color: var(--error-color);
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+/* Submit Button */
+.submit-btn {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.3s ease;
+}
+
+.submit-btn:hover {
+  background: #0056b3;
+}
+
+/***** Start Change Password Section *****/

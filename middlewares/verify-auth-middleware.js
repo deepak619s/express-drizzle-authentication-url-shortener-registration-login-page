@@ -1,3 +1,7 @@
+import {
+  ACCESS_TOKEN_EXPIRY,
+  REFRESH_TOKEN_EXPIRY,
+} from "../config/constant.js";
 import { refreshTokens, verifyJWTToken } from "../services/auth.services.js";
 
 // export const verifyAuthentication = (req, res, next) => {
@@ -44,9 +48,8 @@ export const verifyAuthentication = async (req, res, next) => {
 
   if (refreshToken) {
     try {
-      const { newAccessToken, newRefreshToken, user } = await refreshTokens(
-        refreshToken
-      );
+      const { newAccessToken, newRefreshToken, user } =
+        await refreshTokens(refreshToken);
 
       req.user = user;
 

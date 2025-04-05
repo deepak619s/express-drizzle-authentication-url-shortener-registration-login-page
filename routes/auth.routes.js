@@ -34,6 +34,8 @@ router
   .get(authControllers.getEditProfilePage)
   .post(authControllers.postEditProfile);
 
+router.route("/change-password").get(authControllers.getChangePasswordPage);
+
 router.route("/about").get(authControllers.getAboutPage);
 
 router.route("/contact").get(authControllers.getContactPage);
