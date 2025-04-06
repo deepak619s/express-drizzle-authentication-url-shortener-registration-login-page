@@ -30,6 +30,7 @@ import {
   loginUserSchema,
   registerUserSchema,
   verifyEmailSchema,
+  verifyPasswordSchema,
   verifyUserSchema,
 } from "../validators/auth-validator.js";
 
@@ -264,4 +265,19 @@ export const getChangePasswordPage = async (req, res) => {
   return res.render("auth/change-password", {
     errors: req.flash("errors"),
   });
+};
+
+// postChangePassword :-
+export const postChangePassword = async (req, res) => {
+  const { data, error } = verifyPasswordSchema.safeParse(req.body);
+
+  if (error) {
+    const errorMessages = error.errors.map((err) => err.message);
+    req.flash("errors", errorMessages);
+    return res.redirect("/change-password");
+  }
+
+  console.log("data", data);
+
+  return res.redirect("/change-password");
 };
