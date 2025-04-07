@@ -242,6 +242,19 @@ input:focus {
 .login-link a:hover {
   text-decoration: underline;
 }
+.forgot-password {
+  display: block;
+  margin-top: 5px;
+  font-size: 14px;
+  color: #666;
+  text-decoration: none;
+  text-align: right;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+  color: #333;
+}
 
 /* Footer Styles */
 .footer {
@@ -1276,7 +1289,7 @@ body {
 input[type="password"],
 input[type="text"] {
   width: 100%;
-  padding: 12px 40px;
+  /* padding: 12px 40px; */
   border: 1px solid #ddd;
   border-radius: 6px;
   font-size: 14px;
@@ -1347,3 +1360,172 @@ input:focus {
 }
 
 /***** Start Change Password Section *****/
+
+/***** Start Forgot Password Section *****/
+
+/* Base Styles */
+body {
+  font-family: "Arial", sans-serif;
+  background: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+/* Section Styling */
+.change-password.forgot-password {
+  padding: 50px 20px;
+  min-height: calc(100vh - 100px); /* Adjust based on header/footer height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Container */
+.container {
+  max-width: 450px;
+  width: 100%;
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Change Password Content */
+.change-password-content {
+  text-align: center;
+}
+
+/* User Status */
+.user-status {
+  margin-bottom: 20px;
+}
+
+.status-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 15px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.status-badge i {
+  margin-right: 8px;
+}
+
+.status-badge.success {
+  background: #d4edda;
+  color: #155724;
+}
+
+.status-badge.warning {
+  background: #fff3cd;
+  color: #856404;
+}
+
+/* Success Message */
+.change-password-content > p {
+  color: #333;
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 15px;
+  background: #e9ecef;
+  border-radius: 4px;
+}
+
+/* Form Styling */
+.change-password-form {
+  margin-top: 20px;
+}
+
+.form-title {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.prefix-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #777;
+  font-size: 18px;
+}
+
+input[type="email"] {
+  width: 100%;
+  padding: 12px 12px 12px 40px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+input[type="email"]:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+/* Error Messages */
+.error-container {
+  margin-bottom: 15px;
+}
+
+.flash-error {
+  color: #dc3545;
+  font-size: 14px;
+  background: #f8d7da;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+/* Submit Button */
+.form-button {
+  margin-top: 25px;
+}
+
+.form-submit {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.3s ease;
+}
+
+.form-submit:hover {
+  background: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .container {
+    margin: 0 10px;
+    padding: 20px;
+  }
+
+  .form-title {
+    font-size: 20px;
+  }
+
+  .form-submit {
+    font-size: 14px;
+    padding: 10px 15px;
+  }
+}
+
+/***** Start Forgot Password Section *****/
