@@ -369,7 +369,8 @@ export const updateUserPassword = async ({ userId, newPassword }) => {
 
 // findUserByEmail :-
 export const findUserByEmail = async (email) => {
-  const [user] = await db.select
+  const [user] = await db
+    .select()
     .from(usersTable)
     .where(usersTable)
     .where(eq(usersTable.email, email));

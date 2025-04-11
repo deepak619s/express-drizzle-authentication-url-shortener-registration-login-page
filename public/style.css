@@ -242,19 +242,6 @@ input:focus {
 .login-link a:hover {
   text-decoration: underline;
 }
-.forgot-password {
-  display: block;
-  margin-top: 5px;
-  font-size: 14px;
-  color: #666;
-  text-decoration: none;
-  text-align: right;
-}
-
-.forgot-password:hover {
-  text-decoration: underline;
-  color: #333;
-}
 
 /* Footer Styles */
 .footer {
@@ -350,6 +337,167 @@ input:focus {
 }
 
 /***** End Login Page Section *****/
+
+/***** Start Forgot Password Section *****/
+
+/* Existing .forgot-password styles */
+.forgot-password {
+  display: block;
+  margin-top: 5px;
+  font-size: 14px;
+  color: #666;
+  text-decoration: none;
+  text-align: right;
+}
+
+.forgot-password:hover {
+  color: #333;
+}
+
+.change-password {
+  background-color: #f5f7fa;
+  padding: 20px 0;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.change-password-content {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+}
+
+.user-status {
+  margin-bottom: 20px;
+}
+
+.status-badge {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.status-badge.warning {
+  background-color: #fefcbf;
+  color: #854d0e;
+}
+
+.status-badge.success {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.status-badge i {
+  margin-right: 8px;
+}
+
+.change-password-form {
+  padding: 20px 0;
+}
+
+.submission-message {
+  font-size: 15px;
+  color: #4a5568;
+  padding: 10px 0;
+  background: #edf2f7;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.form-title {
+  font-size: 24px;
+  color: #2d3748;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid #e2e8f0;
+  border-radius: 5px;
+  background: #fff;
+}
+
+.input-wrapper .prefix-icon {
+  padding: 10px;
+  color: #718096;
+}
+
+.input-wrapper input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 10px;
+  font-size: 14px;
+  width: 100%;
+}
+
+.input-wrapper input:disabled {
+  background: #f7fafc;
+  color: #a0aec0;
+}
+
+.form-submit {
+  background-color: #3182ce;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.form-submit:disabled {
+  background-color: #a0aec0;
+  cursor: not-allowed;
+}
+
+.form-submit:hover:not(:disabled) {
+  background-color: #2b6cb0;
+}
+
+.error-container {
+  margin-top: 10px;
+}
+
+.flash-error {
+  color: #e53e3e;
+  font-size: 13px;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .change-password-content {
+    padding: 15px;
+  }
+
+  .form-title {
+    font-size: 20px;
+  }
+
+  .input-wrapper input {
+    font-size: 13px;
+  }
+
+  .form-submit {
+    font-size: 13px;
+  }
+}
+
+/***** End Forgot Password Section *****/
 
 /***** Home Page Section *****/
 
@@ -490,7 +638,6 @@ input:focus {
   padding: 3rem 1rem;
   background-color: #f0f2f5;
   border-radius: 10px;
-  margin-bottom: 2rem;
 }
 
 .contact-hero h1 {
@@ -1529,3 +1676,147 @@ input[type="email"]:focus {
 }
 
 /***** Start Forgot Password Section *****/
+
+/***** Start Reset Password Email Section *****/
+
+/* General Body Styles */
+.body {
+  background-color: #f4f7fa;
+}
+
+/* Header Section */
+.header-section {
+  padding: 20px 0;
+  background-color: #ffffff;
+}
+
+/* Content Section */
+.content-section {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 40px 30px;
+  margin: 0 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+@media (max-width: 480px) {
+  .content-section {
+    padding: 20px;
+    margin: 0 10px;
+  }
+}
+
+.content-column {
+  max-width: 600px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #1f2a44;
+  padding-bottom: 20px;
+}
+
+.greeting {
+  font-size: 16px;
+  color: #4b5563;
+  line-height: 24px;
+  padding-bottom: 16px;
+}
+
+.body-text {
+  font-size: 16px;
+  color: #4b5563;
+  line-height: 24px;
+  padding-bottom: 16px;
+}
+
+.reset-button {
+  background-color: #2563eb;
+  color: #ffffff;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 12px 24px;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.reset-button:hover {
+  background-color: #1d4ed8;
+}
+
+.alternative-link-text {
+  padding-top: 20px;
+}
+
+.link {
+  font-size: 14px;
+  color: #2563eb;
+  line-height: 20px;
+  word-break: break-all;
+}
+
+.link-nostyle {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.link-nostyle:hover {
+  text-decoration: underline;
+}
+
+/* Footer Section */
+.footer-section {
+  padding: 30px 0;
+}
+
+.footer-text {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 20px;
+  text-align: center;
+  padding-bottom: 8px;
+}
+
+.footer-links {
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  padding-top: 8px;
+}
+
+.footer-link {
+  color: #6b7280;
+  text-decoration: underline;
+  margin: 0 8px;
+}
+
+.footer-link:hover {
+  color: #2563eb;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 480px) {
+  .title {
+    font-size: 24px;
+  }
+
+  .greeting,
+  .body-text {
+    font-size: 15px;
+    line-height: 22px;
+  }
+
+  .reset-button {
+    font-size: 15px;
+    padding: 10px 20px;
+  }
+
+  .footer-text,
+  .footer-links {
+    font-size: 13px;
+  }
+}
+
+/***** End Reset Password Email Section *****/
