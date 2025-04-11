@@ -2,6 +2,7 @@ import {
   ACCESS_TOKEN_EXPIRY,
   REFRESH_TOKEN_EXPIRY,
 } from "../config/constant.js";
+import { getHtmlFromMjmlTemplate } from "../lib/get-html-from-mjml-template.js";
 
 import { sendEmail } from "../lib/nodemailer.js";
 import {
@@ -301,7 +302,7 @@ export const postChangePassword = async (req, res) => {
 // getResetPasswordPage :-
 export const getResetPasswordPage = async (req, res) => {
   res.render("auth/forgot-password", {
-    formSubmitted: req.flash("formSubmitted"[0]),
+    formSubmitted: req.flash("formSubmitted")[0],
     errors: req.flash("errors"),
   });
 };
@@ -319,7 +320,7 @@ export const postForgotPassword = async (req, res) => {
   const user = await findUserByEmail(data.email);
 
   if (user) {
-    const getResetPasswordLink = await createResetPasswordLink({
+    const resetPasswordLink = await createResetPasswordLink({
       userId: user.id,
     });
 
@@ -328,8 +329,13 @@ export const postForgotPassword = async (req, res) => {
       link: resetPasswordLink,
     });
 
-    console.log("html", html);
+    sendEmail({
+      to: user.email,
+      subject: "Reset Your Password",
+      html,
+    });
   }
 
-  return res.redirect("/login");
+  req.flash("formSubmitted", true);
+  return res.redirect("/reset-password");
 };
