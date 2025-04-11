@@ -21,8 +21,6 @@ router.route("/about").get(authControllers.getAboutPage);
 
 router.route("/contact").get(authControllers.getContactPage);
 
-router.route("/logout").get(authControllers.logoutUser);
-
 router.route("/me").get(authControllers.getMe);
 
 router.route("/profile").get(authControllers.getProfilePage);
@@ -45,6 +43,11 @@ router
   .get(authControllers.getChangePasswordPage)
   .post(authControllers.postChangePassword);
 
-router.route("/reset-password").get(authControllers.getResetPasswordPage);
+router
+  .route("/reset-password")
+  .get(authControllers.getResetPasswordPage)
+  .post(authControllers.postForgotPassword);
+
+router.route("/logout").get(authControllers.logoutUser);
 
 export const authRoutes = router;

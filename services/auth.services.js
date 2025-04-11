@@ -9,6 +9,7 @@ import crypto from "crypto";
 import { and, eq, gte, lt, sql } from "drizzle-orm";
 import { db } from "../config/db.js";
 import {
+  passwordResetTokensTable,
   sessionsTable,
   shortLink,
   usersTable,
@@ -364,4 +365,32 @@ export const updateUserPassword = async ({ userId, newPassword }) => {
     .update(usersTable)
     .set({ password: newHashPassword })
     .where(eq(usersTable.id, userId));
+};
+
+// findUserByEmail :-
+export const findUserByEmail = async (email) => {
+  const [user] = await db.select
+    .from(usersTable)
+    .where(usersTable)
+    .where(eq(usersTable.email, email));
+
+  return user;
+};
+
+// createResetPasswordLink :-
+export const createResetPasswordLink = async ({ userId }) => {
+  const randomToken = crypto.randomBytes(32).toString("hex");
+
+  const tokenHash = crypto
+    .createHash("sha256")
+    .update(randomToken)
+    .digest("hex");
+
+  await db
+    .delete(passwordResetTokensTable)
+    .where(eq(passwordResetTokensTable.userId, userId));
+
+  await db.insert(passwordResetTokensTable).values({ userId, tokenHash });
+
+  return `${process.env.FRONTEND_URL}/reset-password/${randomToken}`;
 };

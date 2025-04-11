@@ -11,9 +11,11 @@ import {
   comparePassword,
   createAccessToken,
   createRefreshToken,
+  createResetPasswordLink,
   createSession,
   createUser,
   createVerifyEmailLink,
+  findUserByEmail,
   findUserById,
   findVerificationEmailToken,
   generateRandomToken,
@@ -28,6 +30,7 @@ import {
   verifyUserEmailAndUpdate,
 } from "../services/auth.services.js";
 import {
+  forgotPasswordSchema,
   loginUserSchema,
   registerUserSchema,
   verifyEmailSchema,
@@ -280,7 +283,7 @@ export const postChangePassword = async (req, res) => {
 
   const { currentPassword, newPassword } = data;
 
-  const user = await findUserById(req.user.id);
+  const use̥r = await findUserById(req.user.id);
   if (!user) return res.status(404).send("User not found");
 
   const isPasswordValid = await comparePassword(currentPassword, user.password);
@@ -301,4 +304,23 @@ export const getResetPasswordPage = async (req, res) => {
     formSubmitted: req.flash("formSubmitted"[0]),
     errors: req.flash("errors"),
   });
+};
+
+// postForgotPassword :-
+export const postForgotPassword = async (req, res) => {
+  const { data, error } = forgotPasswordSchema.safeParse(req.body);
+
+  if (error) {
+    const errorMessages = error.errors.map((err) => err.message);
+    req.flash("errors", errorMessages[0]);
+    res.redirect(`/reset-password/${token}`);
+  }
+
+  const user = await findUserByEmail(data.email);
+
+  if (user) {
+    const getResetPasswordLink = await createResetPasswordLink({
+      userId: user.id,
+    });
+  }
 };

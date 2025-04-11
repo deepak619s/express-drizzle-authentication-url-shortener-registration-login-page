@@ -26,7 +26,6 @@ export const registerUserSchema = loginUserSchema.extend({
     .min(3, { message: "Name must be at least 3 characters long." })
     .max(100, { message: "Name must be no more than 100 characters." }),
 });
-
 export const verifyEmailSchema = z.object({
   token: z.string().trim().length(8),
   email: z.string().trim().email(),
@@ -60,3 +59,13 @@ export const verifyPasswordSchema = z
     message: "Passwords don't match",
     path: ["confirmPassword"], // Error will be associated with confirmPassword field
   });
+
+const emailSchema = z
+  .string()
+  .trim()
+  .email({ message: "Please enter a valid email address." })
+  .max(100, { message: "Email must be no more than 100 characters." });
+
+export const forgotPasswordSchema = z.object({
+  email: emailSchema,
+});
