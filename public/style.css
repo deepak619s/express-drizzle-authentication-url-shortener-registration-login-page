@@ -1820,3 +1820,375 @@ input[type="email"]:focus {
 }
 
 /***** End Reset Password Email Section *****/
+
+/***** Start Wrong Reset Password Token Section *****/
+
+body {
+  font-family: "Arial", sans-serif;
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  color: #333;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Section Styling */
+.reset-password-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.reset-password-content {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Form Styling */
+.reset-password-form {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.icon-container {
+  font-size: 60px;
+  color: #ff4444;
+  margin-bottom: 20px;
+}
+
+.form-title {
+  font-size: 2.5em;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.message {
+  font-size: 1.1em;
+  color: #7f8c8d;
+  margin-bottom: 25px;
+}
+
+.reset-link {
+  display: inline-block;
+  padding: 12px 25px;
+  background: #3498db;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 25px;
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+}
+
+.reset-link:hover {
+  background: #2980b9;
+  transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .reset-password-content {
+    padding: 20px;
+  }
+
+  .form-title {
+    font-size: 2em;
+  }
+
+  .message {
+    font-size: 1em;
+  }
+
+  .reset-link {
+    padding: 10px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-title {
+    font-size: 1.5em;
+  }
+
+  .message {
+    font-size: 0.9em;
+  }
+
+  .icon-container {
+    font-size: 50px;
+  }
+}
+
+/***** Start Wrong Reset Password Token Section *****/
+
+/***** Start Reset Password Section *****/
+
+body {
+  font-family: "Arial", sans-serif;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  color: #333;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Section Styling */
+.reset-password-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.reset-password-content {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1s ease-in-out;
+  text-align: center;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* User Status */
+.user-status {
+  margin-bottom: 20px;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 0.9em;
+}
+
+.status-badge.success {
+  background: #2ecc71;
+  color: #fff;
+}
+
+.status-badge.warning {
+  background: #e74c3c;
+  color: #fff;
+}
+
+.status-badge i {
+  margin-right: 8px;
+}
+
+/* Form Styling */
+.reset-password-form,
+.success-message {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.form-title {
+  font-size: 2.5em;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.input-wrapper {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 12px 40px;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  font-size: 1em;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.input-wrapper input:focus {
+  border-color: #3498db;
+}
+
+.prefix-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #7f8c8d;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #7f8c8d;
+}
+
+.toggle-password i {
+  font-size: 1.2em;
+}
+
+.password-requirements {
+  text-align: left;
+  font-size: 0.9em;
+  color: #7f8c8d;
+  margin-bottom: 15px;
+}
+
+.password-requirements ul {
+  list-style: none;
+  padding-left: 20px;
+}
+
+.password-requirements ul li {
+  position: relative;
+}
+
+.password-requirements ul li:before {
+  content: "•";
+  color: #3498db;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+.error-container {
+  margin-bottom: 20px;
+}
+
+.flash-error {
+  color: #e74c3c;
+  font-size: 0.9em;
+  margin: 5px 0;
+}
+
+.form-button {
+  margin-top: 20px;
+}
+
+.form-submit {
+  width: 100%;
+  padding: 12px;
+  background: #3498db;
+  border: none;
+  border-radius: 25px;
+  color: #fff;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+}
+
+.form-submit:hover {
+  background: #2980b9;
+  transform: scale(1.05);
+}
+
+.success-message .message {
+  font-size: 1.1em;
+  color: #2ecc71;
+  margin-bottom: 20px;
+}
+
+.login-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #2ecc71;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 25px;
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+}
+
+.login-link:hover {
+  background: #27ae60;
+  transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .reset-password-content {
+    padding: 20px;
+  }
+
+  .form-title {
+    font-size: 2em;
+  }
+
+  .input-wrapper input {
+    padding: 10px 35px;
+  }
+
+  .form-submit,
+  .login-link {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-title {
+    font-size: 1.5em;
+  }
+
+  .input-wrapper input {
+    padding: 8px 30px;
+  }
+
+  .password-requirements {
+    font-size: 0.8em;
+  }
+
+  .form-submit,
+  .login-link {
+    font-size: 1em;
+  }
+}
+
+/***** End Reset Password Section *****/

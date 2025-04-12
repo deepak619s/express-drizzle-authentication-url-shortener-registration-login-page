@@ -21,6 +21,7 @@ import {
   findVerificationEmailToken,
   generateRandomToken,
   getAllShortLinks,
+  getResetPasswordToken,
   // generateToken,
   getUserByEmail,
   hashPassword,
@@ -338,4 +339,19 @@ export const postForgotPassword = async (req, res) => {
 
   req.flash("formSubmitted", true);
   return res.redirect("/reset-password");
+};
+
+// getResetPasswordTokenPage :-
+export const getResetPasswordTokenPage = async (req, res) => {
+  const { token } = req.params;
+
+  const passwordResetData = await getResetPasswordToken(token);
+
+  if (!passwordResetData) return res.render("auth/wrong-reset-password-token");
+
+  return res.render("auth/reset-password", {
+    formSubmitted: req.flash("formSubmitted")[0],
+    errors: req.flash("errors"),
+    token,
+  });
 };
