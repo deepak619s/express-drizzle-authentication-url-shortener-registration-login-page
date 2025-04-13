@@ -279,7 +279,7 @@ input:focus {
 
 /* Login Form Styles */
 .login-container {
-  min-height: 100vh;
+  min-height: 93vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -635,7 +635,7 @@ input:focus {
 
 .contact-hero {
   text-align: center;
-  padding: 3rem 1rem;
+  padding: 1rem 1rem;
   background-color: #f0f2f5;
   border-radius: 10px;
 }
@@ -724,13 +724,6 @@ textarea:focus {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-body {
-  font-family: "Segoe UI", Arial, sans-serif;
-  background: var(--background-color);
-  color: var(--text-color);
-  line-height: 1.6;
 }
 
 .profile-container {
@@ -1510,18 +1503,10 @@ input:focus {
 
 /***** Start Forgot Password Section *****/
 
-/* Base Styles */
-body {
-  font-family: "Arial", sans-serif;
-  background: #f4f4f4;
-  margin: 0;
-  padding: 0;
-}
-
 /* Section Styling */
 .change-password.forgot-password {
   padding: 50px 20px;
-  min-height: calc(100vh - 100px); /* Adjust based on header/footer height */
+  min-height: calc(100vh - 50px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1679,11 +1664,6 @@ input[type="email"]:focus {
 
 /***** Start Reset Password Email Section *****/
 
-/* General Body Styles */
-.body {
-  background-color: #f4f7fa;
-}
-
 /* Header Section */
 .header-section {
   padding: 20px 0;
@@ -1823,14 +1803,6 @@ input[type="email"]:focus {
 
 /***** Start Wrong Reset Password Token Section *****/
 
-body {
-  font-family: "Arial", sans-serif;
-  background: linear-gradient(135deg, #6e8efb, #a777e3);
-  color: #333;
-  line-height: 1.6;
-  overflow-x: hidden;
-}
-
 /* Section Styling */
 .reset-password-section {
   min-height: 100vh;
@@ -1944,14 +1916,6 @@ body {
 /***** Start Wrong Reset Password Token Section *****/
 
 /***** Start Reset Password Section *****/
-
-body {
-  font-family: "Arial", sans-serif;
-  background: linear-gradient(135deg, #4facfe, #00f2fe);
-  color: #333;
-  line-height: 1.6;
-  overflow-x: hidden;
-}
 
 /* Section Styling */
 .reset-password-section {

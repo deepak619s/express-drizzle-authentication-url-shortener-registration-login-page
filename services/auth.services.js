@@ -398,10 +398,7 @@ export const createResetPasswordLink = async ({ userId }) => {
 
 // getResetPasswordToken :-
 export const getResetPasswordToken = async (token) => {
-  const tokenHash = crypto
-    .createHash("sha256")
-    .update(token)
-    .update.digest("hex");
+  const tokenHash = crypto.createHash("sha256").update(token).digest("hex");
 
   const [data] = await db
     .select()
@@ -414,4 +411,11 @@ export const getResetPasswordToken = async (token) => {
     );
 
   return data;
+};
+
+// clearResetPasswordToken :-
+export const clearResetPasswordToken = async (userId) => {
+  return await db
+    .delete(passwordResetTokensTable)
+    .where(eq(passwordResetTokensTable.userId, userId));
 };

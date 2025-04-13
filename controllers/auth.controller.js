@@ -7,6 +7,7 @@ import { getHtmlFromMjmlTemplate } from "../lib/get-html-from-mjml-template.js";
 import { sendEmail } from "../lib/nodemailer.js";
 import {
   authenticateUser,
+  clearResetPasswordToken,
   clearUserSession,
   clearVerifyEmailTokens,
   comparePassword,
@@ -37,6 +38,7 @@ import {
   registerUserSchema,
   verifyEmailSchema,
   verifyPasswordSchema,
+  verifyResetPasswordSchema,
   verifyUserSchema,
 } from "../validators/auth-validator.js";
 
@@ -354,4 +356,34 @@ export const getResetPasswordTokenPage = async (req, res) => {
     errors: req.flash("errors"),
     token,
   });
+};
+
+// postResetPasswordToken :-
+export const postResetPasswordToken = async (req, res) => {
+  const { token } = req.params;
+
+  const passwordResetData = await getResetPasswordToken(token);
+
+  if (!passwordResetData) {
+    req.flash("errors", "Password Token is not matching");
+    return res.render("auth/wrong-reset-password-token");
+  }
+
+  const [data, error] = verifyResetPasswordSchema.safeParse(req.body);
+
+  if (error) {
+    const errorMessages = error.errors.map((err) => err.message);
+    req.flash("errors", errorMessages[0]);
+    res.redirect(`/reset-password/${token}`);
+  }
+
+  const { newPassword } = data;
+
+  const user = await findUserById(passwordResetData.userId);
+
+  await clearResetPasswordToken(user.id);
+
+  await updateUserPassword({ userId: user.id, newPassword });
+
+  return res.redirect("/login");
 };
